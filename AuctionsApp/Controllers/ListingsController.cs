@@ -106,6 +106,14 @@ namespace AuctionsApp.Controllers
             return View("Details", listing);
         }
 
+        public async Task<ActionResult> CloseBidding(int id)
+        {
+            var listing = await _listingsService.GetById(id);
+            listing.IsSold = true;
+            await _listingsService.SaveChanges();
+            return View("Details", listing);
+        }
+
 
 
         //    // GET: Listings/Edit/5
